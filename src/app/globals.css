@@ -1,0 +1,33 @@
+body { outline: 5px solid red; }
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* HERO */
+.hero-bg {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; /* start */
+}
+
+/* statyczne tło przy scrollu (działa najlepiej na desktop/tablet) */
+@media (min-width: 768px) {
+  .hero-bg {
+    background-attachment: fixed;
+  }
+}
+
+/* zoom-in na wejściu — animujemy background-size (bez transform) */
+@keyframes heroBgZoomIn {
+  from {
+    background-size: 100%;
+  }
+  to {
+    background-size: 122%;
+  }
+}
+
+.hero-zoom {
+  animation: heroBgZoomIn 5000ms ease-out forwards;
+}
