@@ -25,7 +25,8 @@ export default function Reveal({ children }: { children: React.ReactNode }) {
     <div
       ref={ref}
       className={[
-        'transition-all duration-700 ease-out',
+        // +1s opóźnienia i +1s czasu trwania
+        'transition-all duration-[1400ms] delay-[300ms] ease-out',
         show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4',
       ].join(' ')}
     >
