@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 const navItems = [
   { href: '/o-nas', label: 'O nas' },
   { href: '/oferta', label: 'Oferta' },
-  { href: '/produkty', label: 'Produkty' },
+  { href: '/certyfikaty', label: 'Certyfikaty' },
   { href: '/kontakt', label: 'Kontakt' },
 ];
 
@@ -44,7 +44,7 @@ export default function Navbar() {
                 className={[
                   'relative text-lg font-semibold tracking-wide text-gray-800 transition-colors duration-200 hover:text-gray-950',
                   // underline animation
-                  'after:absolute after:left-0 after:-bottom-2 after:h-[2px] after:w-0 after:bg-gray-900 after:transition-all after:duration-400 after:content-[""]',
+                  'after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-gray-900 after:transition-all after:duration-400 after:content-[""]',
                   'hover:after:w-full',
                   // aktywna strona
                   isActive ? 'after:w-full' : '',

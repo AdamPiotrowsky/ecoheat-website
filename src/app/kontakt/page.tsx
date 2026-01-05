@@ -6,7 +6,7 @@ export default function ContactPage() {
       <PageHero
         title="Kontakt"
         subtitle="Napisz lub zadzwoń — odpowiemy najszybciej jak to możliwe."
-        imageUrl="/images/hero-contact.jpg"
+        imageUrl="/images/hero/h3.jpeg"
       />
 
       <section className="grid gap-6 md:grid-cols-2">
