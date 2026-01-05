@@ -19,9 +19,9 @@ export default function GalleryCarousel({ images }: { images: string[] }) {
 
   return (
     <div className="relative mt-6">
-      <div className="relative h-72 overflow-hidden rounded-2xl bg-gray-100 shadow-sm md:h-96">
+      <div className="relative h-[420px] overflow-hidden rounded-2xl bg-gray-100 shadow-sm md:h-[520px] lg:h-[620px]">
         <Image
-          key={safeImages[idx]} // key powoduje ładny „restart” animacji gdybyś dodał
+          key={safeImages[idx]}
           src={safeImages[idx]}
           alt={`Realizacja ${idx + 1}`}
           fill
@@ -29,7 +29,6 @@ export default function GalleryCarousel({ images }: { images: string[] }) {
           priority
         />
 
-        {/* Strzałki */}
         <button
           onClick={prev}
           className="absolute left-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/80 p-3 shadow-md backdrop-blur transition hover:bg-white"
@@ -48,10 +47,23 @@ export default function GalleryCarousel({ images }: { images: string[] }) {
           →
         </button>
 
-        {/* Delikatny licznik */}
-        <div className="absolute bottom-3 right-3 z-20 rounded-full bg-black/55 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
-          {idx + 1}/{safeImages.length}
-        </div>
+          {/* Kropki nawigacji */}
+          <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
+            {safeImages.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIdx(i)}
+                aria-label={`Przejdź do zdjęcia ${i + 1}`}
+                className={[
+                  'h-2 w-2 rounded-full transition-all duration-300',
+                  i === idx
+                    ? 'w-6 bg-white'
+                    : 'bg-white/60 hover:bg-white/80',
+                ].join(' ')}
+              />
+            ))}
+          </div>
+
       </div>
     </div>
   );

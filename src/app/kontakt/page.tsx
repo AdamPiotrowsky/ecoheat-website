@@ -1,54 +1,102 @@
 import PageHero from '@/components/PageHero';
+import Reveal from '@/components/Reveal';
+import MeetingForm from '@/components/MeetingForm';
+
+const COMPANY = {
+  owner: 'Dominik Przewoźny',
+  phone: '+48 734 601 121',
+  email: 'ecoheattechnic@gmail.com',
+  addressLine1: 'Ratajczaka 14',
+  postcodeCity: '64-320 Wielka Wieś',
+  fullAddress: 'Ratajczaka 14, 64-320 Wielka Wieś, Polska',
+};
 
 export default function ContactPage() {
+  const mapsSrc = `https://www.google.com/maps?q=${encodeURIComponent(
+    COMPANY.fullAddress
+  )}&output=embed`;
+
   return (
-    <div className="space-y-10">
+    <>
       <PageHero
         title="Kontakt"
         subtitle="Napisz lub zadzwoń — odpowiemy najszybciej jak to możliwe."
-        imageUrl="/images/hero/h3.jpeg"
+        imageUrl="/images/hero/h5.jpeg"
+        heightClassName="h-[70vh] md:h-[70vh]"
       />
+        
+      <div className="mx-auto max-w-6xl px-4 py-12 space-y-6">
 
-      <section className="grid gap-6 md:grid-cols-2">
-        <div className="rounded-2xl bg-white p-6 shadow-sm">
-          <h2 className="text-2xl font-semibold">Dane firmy</h2>
+                {/* MAPA */}
+        <Reveal>
+          <section className="mt-10 overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm">
+            <iframe
+              title="Mapa – lokalizacja EcoHeat Technic"
+              src={mapsSrc}
+              width="100%"
+              height="100%"
+              className="min-h-[420px] w-full"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </section>
+        </Reveal>
 
-          <div className="mt-4 space-y-2 text-gray-700">
-            <p className="font-semibold">EcoHeat</p>
-            <p>ul. Przykładowa 1, 00-000 Miasto</p>
-            <p>Tel: +48 000 000 000</p>
-            <p>Email: kontakt@ecoheat.pl</p>
-          </div>
+        <section className="grid gap-6 md:grid-cols-2">
+          {/* LEWA: Dane */}
+          <Reveal>
+            <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm md:p-8">
+              <h2 className="text-xl font-bold tracking-tight md:text-2xl">
+                Dane firmy
+              </h2>
+              <p className="mt-2 text-sm text-gray-600">
+                Skontaktuj się z nami telefonicznie lub mailowo — chętnie doradzimy.
+              </p>
 
-          <h3 className="mt-6 text-lg font-semibold">Formularz</h3>
-          <form className="mt-3 space-y-3">
-            <input className="w-full rounded-xl border bg-white px-4 py-2" placeholder="Imię i nazwisko" />
-            <input className="w-full rounded-xl border bg-white px-4 py-2" placeholder="Email" />
-            <input className="w-full rounded-xl border bg-white px-4 py-2" placeholder="Telefon (opcjonalnie)" />
-            <textarea className="w-full rounded-xl border bg-white px-4 py-2" rows={5} placeholder="Wiadomość" />
-            <button
-              type="button"
-              className="rounded-xl bg-blue-600 px-5 py-2 font-semibold text-white hover:bg-blue-700"
-            >
-              Wyślij
-            </button>
-            <p className="text-xs text-gray-500">
-              (W kolejnym kroku podepniemy wysyłkę e-mail.)
-            </p>
-          </form>
-        </div>
+              <div className="mt-6 space-y-4 text-gray-800">
+                <div>
+                  <p className="text-sm text-gray-500">Właściciel</p>
+                  <p className="font-semibold">{COMPANY.owner}</p>
+                </div>
 
-        <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
-          <iframe
-            title="Mapa"
-            src="https://www.google.com/maps?q=Warszawa&output=embed"
-            width="100%"
-            height="100%"
-            className="min-h-[420px] w-full"
-            loading="lazy"
-          />
-        </div>
-      </section>
-    </div>
+                <div>
+                  <p className="text-sm text-gray-500">Adres</p>
+                  <p className="font-semibold">{COMPANY.addressLine1}</p>
+                  <p className="font-semibold">{COMPANY.postcodeCity}</p>
+                </div>
+
+                <div>
+                  <p className="text-sm text-gray-500">Telefon</p>
+                  <a
+                    className="font-semibold underline decoration-black/20 underline-offset-4 hover:decoration-black/60"
+                    href={`tel:${COMPANY.phone.replace(/\s/g, '')}`}
+                  >
+                    {COMPANY.phone}
+                  </a>
+                </div>
+
+                <div>
+                  <p className="text-sm text-gray-500">Email</p>
+                  <a
+                    className="font-semibold underline decoration-black/20 underline-offset-4 hover:decoration-black/60"
+                    href={`mailto:${COMPANY.email}`}
+                  >
+                    {COMPANY.email}
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </Reveal>
+
+          {/* PRAWA: Formularz mailowy */}
+          <Reveal>
+            <MeetingForm toEmail={COMPANY.email} />
+          </Reveal>
+        </section>
+
+
+      </div>
+    </>
   );
 }

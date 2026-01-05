@@ -4,26 +4,26 @@ import CertificateGallery from '@/components/CertificateGallery';
 
 const certificates = [
   {
-    title: 'Certyfikat A',
-    desc: 'Krótki opis certyfikatu i zakresu uprawnień.',
+    title: 'Certyfikat Autoryzowanego Instalatora',
+    desc: 'RAC/CAC/MULTI',
     thumb: '/images/certs/c1.png',
     full: '/images/certs/c1.png',
   },
   {
-    title: 'Certyfikat B',
-    desc: 'Krótki opis certyfikatu i zakresu uprawnień.',
+    title: 'Certyfikat Autoryzowanego Dystrybutora oraz Serwisanta',
+    desc: 'posiada autoryzację w zakresie: sprzedaży, montażu, serwisu gwarancyjnego oraz pogwarancyjnego urządzeń klimatyzacyjnych typu SPLIT i MULTI SPLIT.',
     thumb: '/images/certs/c2.png',
     full: '/images/certs/c2.png',
   },
   {
-    title: 'Certyfikat C',
-    desc: 'Krótki opis certyfikatu i zakresu uprawnień.',
+    title: 'Rotenso® Certyfikat Autoryzowanego Instalatora',
+    desc: 'posiada autoryzację w zakresie doboru, sprzedaży, instalacji oraz serwisu klimatyzatorów Rotenso®.',
     thumb: '/images/certs/c3.png',
     full: '/images/certs/c3.png',
   },
     {
-    title: 'Certyfikat D',
-    desc: 'Krótki opis certyfikatu i zakresu uprawnień.',
+    title: 'Certyfikat Autoryzowanego Serwisanta',
+    desc: 'posiada autoryzację na montaż i serwis urządzeń RAC/FJM/CAC na okres do dnia 09.10.2027r.',
     thumb: '/images/certs/c4.png',
     full: '/images/certs/c4.png',
   },

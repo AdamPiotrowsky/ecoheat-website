@@ -3,12 +3,18 @@ import PageHero from '@/components/PageHero';
 import Reveal from '@/components/Reveal';
 import GalleryCarousel from '@/components/GalleryCarousel';
 import GoogleReviewsSection from '@/components/GoogleReviewsSection';
+import MeetingForm from '@/components/MeetingForm';
+
 
 const galleryImages = [
-  '/images/hero-about.jpg',
-  '/images/gallery/logo.jpg',
-  '/images/hero-about.jpg',
-  '/images/gallery/logo.jpg',
+
+  '/images/hero/h1.jpeg',
+  '/images/hero/h2.jpeg',
+  '/images/hero/h3.jpeg',
+  '/images/hero/h4.jpeg',
+  '/images/hero/h5.jpeg',
+  '/images/hero/h6.jpeg',
+  '/images/hero/h7.jpeg',
 ];
 
 const partnerLogos = [
@@ -25,66 +31,88 @@ const partnerLogos = [
 // Wklejasz ręcznie swoje prawdziwe opinie:
 const googleReviews = [
   {
-    author: 'rentileno…',
-    date: '2025-04-06',
+    author: 'Marek Szeremietiew',
+    date: '2025-03',
     rating: 5,
     text:
-      'Profesjonalne podejście do klienta. Montaż poszedł sprawnie i szybko. ' +
-      'Klimatyzacja grzeje i chłodzi :) PolecamKlimatyzacja grzeje i chłodzi :) PolecamKlimatyzacja grzeje i chłodzi :) PolecamKlimatyzacja grzeje i chłodzi :) PolecamKlimatyzacja grzeje i chłodzi :) Polecam',
+      'Z pełnym przekonaniem polecam firmę, która wykonywała u mnie montaż pompy ciepła, ' +
+      'instalację hydrauliczną oraz rekuperację w domu w Lusówku. Całość prac została ' +
+      'wykonana bardzo profesjonalnie, rzetelnie i terminowo. Ekipa świetnie doradziła ' +
+      'w kwestii wyboru odpowiedniej pompy ciepła (9 kW), zaplanowała całą instalację i ' +
+      'wykonała ją z ogromną starannością. Ogrzewanie podłogowe działa perfekcyjnie, a ' +
+      'rekuperacja znacząco poprawiła komfort w domu. Bardzo doceniam dokładność i ' +
+      'dbałość o szczegóły, czyste i estetyczne wykonanie, szybki kontakt, uczciwą ' +
+      'wycenę i brak ukrytych kosztów. To ekipa, której naprawdę można zaufać.',
   },
   {
-    author: 'Alicja',
-    date: '2025-04-01',
+    author: 'Wojciech Dudkiewicz',
+    date: '2025-04',
     rating: 5,
     text:
-      'Profesjonalna firma. Fachowe doradztwo. Dobrze zorganizowana praca. ' +
-      'Dotrzymanie terminu. Wszystko zgodnie z ustaleniami.',
+      'Pomoc w doborze i montaż zmiękczacza wody wraz z dodatkowym osprzętem, wymiana rur ' +
+      'od wody użytkowej oraz czyszczenie instalacji centralnego ogrzewania z montażem ' +
+      'filtra. Jestem bardzo zadowolony z poziomu, czasu oraz kosztów usługi. Współpraca ' +
+      'z p. Dominikiem to przyjemność – dziękuję.',
   },
   {
-    author: 'Maciej Kazieczko',
-    date: '2025-04-01',
-    rating: 1,
-    text:
-      'Profesjonalna i rzetelna firma. Montaż klimatyzacji przeprowadzony sprawnie, ' +
-      'czysto i zgodnie z ustaleniami. Fachowe podejście.',
-  },
-  {
-    author: 'Mateusz Owsian…',
-    date: '2025-03-28',
-    rating: 2,
-    text: 'Godny polecenia profesjonalista.',
-  },
-    {
-    author: 'rentileno…',
-    date: '2025-04-06',
+    author: 'Mateusz Buda',
+    date: '2025-03',
     rating: 5,
     text:
-      'Profesjonalne podejście do klienta. Montaż poszedł sprawnie i szybko. ' +
-      'Klimatyzacja grzeje i chłodzi :) PolecamKlimatyzacja grzeje i chłodzi :) PolecamKlimatyzacja grzeje i chłodzi :) PolecamKlimatyzacja grzeje i chłodzi :) PolecamKlimatyzacja grzeje i chłodzi :) Polecam',
+      'Firma rzetelna, słowna i bardzo pomocna. Mieliśmy okazję wielokrotnie ze sobą ' +
+      'współpracować i na pewno nie będzie to ostatni raz. Zawsze mogę liczyć na fachową ' +
+      'pomoc, poradę oraz terminowość. Polecam w 100%.',
   },
   {
-    author: 'Alicja',
-    date: '2025-04-01',
+    author: 'Damian S',
+    date: '2025-03',
     rating: 5,
     text:
-      'Profesjonalna firma. Fachowe doradztwo. Dobrze zorganizowana praca. ' +
-      'Dotrzymanie terminu. Wszystko zgodnie z ustaleniami.',
+      'Zdecydowanie polecam firmę EcoHeat Technic za profesjonalny montaż pompy ciepła ' +
+      'LG Therma V. Cały proces – od doboru urządzenia, przez wycenę, aż po samą ' +
+      'instalację – przebiegł bez zastrzeżeń. Ekipa sprawna, dbająca o porządek i detale. ' +
+      'Pompa działa cicho i wydajnie.',
   },
   {
-    author: 'Maciej Kazieczko',
-    date: '2025-04-01',
+    author: 'Katarzyna Araszewska',
+    date: '2025-03',
     rating: 5,
     text:
-      'Profesjonalna i rzetelna firma. Montaż klimatyzacji przeprowadzony sprawnie, ' +
-      'czysto i zgodnie z ustaleniami. Fachowe podejście.',
+      'Polecam firmę EcoHeat Technic. Profesjonalny montaż klimatyzacji, szybka realizacja ' +
+      'i fachowa obsługa. Wszystko wykonane solidnie i terminowo.',
   },
   {
-    author: 'Mateusz Owsian…',
-    date: '2025-03-28',
-    rating: 2,
-    text: 'Godny polecenia profesjonalista.',
+    author: 'Beniamin Chodorowski',
+    date: '2025-03',
+    rating: 5,
+    text:
+      'Robota sprawna i bezproblemowa. Wcześniej dokładnie omówiliśmy kwestie techniczne ' +
+      'i wizualne, udało się znaleźć złoty środek. Zamówiłem urządzenie Sinclair – ciche ' +
+      'i wydajne. Ekipa słowna, bez niespodzianek.',
+  },
+  {
+    author: 'Karolina Cichy',
+    date: '2025-03',
+    rating: 5,
+    text:
+      'Super kontakt, szybko i rzetelnie wykonana robota. Polecam z całego serca.',
+  },
+  {
+    author: 'Alicja Fertig',
+    date: '2025-03',
+    rating: 5,
+    text:
+      'Rzetelny wykonawca, godny polecenia.',
+  },
+  {
+    author: 'Marcin Kula',
+    date: '2025-04',
+    rating: 5,
+    text:
+      'Polecam. Rzetelna firma z dużą wiedzą.',
   },
 ];
+
 
 function calcAverageRating(reviews: { rating: number }[]) {
   if (!reviews.length) return 0;
@@ -114,7 +142,7 @@ export default function HomePage() {
                 alt="EcoHeat logo"
                 width={120}
                 height={120}
-                className="h-24 w-auto"
+                className="h-32 w-auto"
                 priority
               />
 
@@ -296,11 +324,21 @@ Pompy ciepła · Ogrzewanie podłogowe · Rekuperacja · Klimatyzacja ·<br /> K
 
     <GoogleReviewsSection
       reviews={googleReviews}
-      totalCount={38}
+      totalCount={12}
       averageRating={avg}
     />
   </Reveal>
 </section>
+
+
+
+{/* 6) Umów się na spotkanie lub konsultację */}
+<section id="spotkanie" className="mx-auto max-w-6xl px-4 pb-14 scroll-mt-36">
+  <Reveal>
+    <MeetingForm toEmail="ecoheattechnic@gmail.com" />
+  </Reveal>
+</section>
+
 
     </>
   );

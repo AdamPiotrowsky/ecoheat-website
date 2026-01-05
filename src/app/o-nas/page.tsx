@@ -1,5 +1,6 @@
 import PageHero from '@/components/PageHero';
 import Reveal from '@/components/Reveal';
+import MeetingForm from '@/components/MeetingForm';
 
 const premiumPoints = [
   { title: 'Świadomy dobór technologii', desc: 'Rozwiązania dobieramy pod budynek i potrzeby, nie pod schemat.' },
@@ -181,6 +182,23 @@ export default function AboutPage() {
           </section>
         </Reveal>
       </div>
+
+
+
+      {/* 6) Umów się na spotkanie lub konsultację */}
+      <section id="spotkanie" className="mx-auto max-w-6xl px-4 pb-14 scroll-mt-36">
+        <Reveal>
+          <MeetingForm toEmail="twojmail@ecoheat.pl" />
+        </Reveal>
+      </section>
     </>
+
+
+
+
   );
+
+
+
+  
 }
