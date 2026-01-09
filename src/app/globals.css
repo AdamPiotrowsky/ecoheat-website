@@ -1,4 +1,7 @@
-body { outline: 5px solid red; }
+body { 
+  outline: 5px solid red; /* jak już wszystko będzie OK, możesz to wywalić :) */
+}
+
 @import "tailwindcss";
 @tailwind base;
 @tailwind components;
@@ -7,27 +10,54 @@ body { outline: 5px solid red; }
 /* HERO */
 .hero-bg {
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover; /* start */
+  background-position: center;       /* możesz zmienić na 'center top', jeśli chcesz, żeby na telefonie było widać bardziej górę */
+  background-size: cover;           /* ważne: cover = żadnych pasków, tylko przycięcie */
+  background-color: #000;           /* jakby obrazek się nie wyrabiał na 100%, nie zobaczysz szarego tła */
 }
 
-/* statyczne tło przy scrollu (działa najlepiej na desktop/tablet) */
+/* zoom-in – TERAZ przez transform, nie background-size */
+@keyframes heroBgZoomIn {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1.15);
+  }
+}
+
+.hero-zoom {
+  will-change: transform;
+  transform-origin: center;
+  animation: heroBgZoomIn 8000ms ease-out forwards;
+}
+
+/* statyczne tło przy scrollu (desktop/tablet) */
 @media (min-width: 768px) {
   .hero-bg {
     background-attachment: fixed;
   }
 }
 
-/* zoom-in na wejściu — animujemy background-size (bez transform) */
-@keyframes heroBgZoomIn {
-  from {
-    background-size: 100%;
+/* Na telefonach:
+   - wyłączamy background-attachment: fixed (na mobile to często się sypie)
+   - możemy też dać minimalny zoom albo całkiem go wyłączyć */
+@media (max-width: 767px) {
+  .hero-bg {
+    background-attachment: scroll;
   }
-  to {
-    background-size: 122%;
+
+  .hero-zoom {
+    animation-duration: 6000ms;
+    /* Jeśli nadal będzie się wydawać, że „drga”, możesz w ogóle wyłączyć:
+       animation: none;
+       transform: scale(1.05);
+    */
   }
 }
 
-.hero-zoom {
-  animation: heroBgZoomIn 5000ms ease-out forwards;
+/* Osoby z prefers-reduced-motion – bez animacji */
+@media (prefers-reduced-motion: reduce) {
+  .hero-zoom {
+    animation: none;
+  }
 }

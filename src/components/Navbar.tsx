@@ -37,7 +37,7 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:py-6">
         {/* LOGO */}
         <Link href="/" className="flex items-center gap-3">
-        <Image
+          <Image
             src="/images/logo.png"
             alt="EcoHeat logo"
             width={140}
@@ -45,7 +45,6 @@ export default function Navbar() {
             className="h-18 w-auto md:h-20"
             priority
           />
-
         </Link>
 
         {/* DESKTOP NAV */}
@@ -59,14 +58,11 @@ export default function Navbar() {
                 href={item.href}
                 className={[
                   'relative px-2 py-2 text-lg font-semibold tracking-wide text-gray-800 transition-colors duration-200 hover:text-gray-950',
-                  // underline – blisko tekstu, pełna szerokość
                   'after:absolute after:left-0 after:right-0 after:bottom-1 after:h-[2px] after:bg-gray-900 after:content-[""]',
-                  'after:origin-left after:scale-x-0 after:transition-transform after:duration-300',
+                  'after:origin-left after:scale-x-0 after:transition-transform after:duration-500',
                   'hover:after:scale-x-100',
                   isActive ? 'after:scale-x-100' : '',
                 ].join(' ')}
-
-
               >
                 {item.label}
               </Link>
@@ -77,29 +73,36 @@ export default function Navbar() {
         {/* HAMBURGER (MOBILE) */}
         <button
           type="button"
-          className="md:hidden inline-flex items-center justify-center rounded-xl border border-black/10 p-3 text-gray-900 shadow-sm transition hover:bg-gray-50"
-          aria-label="Otwórz menu"
+          className="inline-flex items-center justify-center rounded-xl border border-black/10 p-3 text-gray-900 shadow-sm transition hover:bg-gray-50 md:hidden"
+          aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
-          {/* Ikona hamburger / X */}
-          <span className="relative block h-4 w-6">
+          <span className="relative block h-[14px] w-6">
+            {/* Linia 1 */}
             <span
               className={[
-                'absolute left-0 top-0 h-[2px] w-6 bg-gray-900 transition-all duration-300',
-                open ? 'top-2 rotate-45' : '',
+                'absolute left-0 right-0 top-1/2 block h-[2px] w-full rounded-full bg-gray-900',
+                'origin-center transition-transform duration-300 ease-out',
+                open ? 'translate-y-0 rotate-45' : '-translate-y-[6px] rotate-0',
               ].join(' ')}
             />
+
+            {/* Linia 2 */}
             <span
               className={[
-                'absolute left-0 top-2 h-[2px] w-6 bg-gray-900 transition-all duration-300',
-                open ? 'opacity-0' : 'opacity-100',
+                'absolute left-0 right-0 top-1/2 block h-[2px] w-full rounded-full bg-gray-900',
+                'origin-center transition-all duration-200 ease-out',
+                open ? 'opacity-0' : 'opacity-100 -translate-y-[0.5px]',
               ].join(' ')}
             />
+
+            {/* Linia 3 */}
             <span
               className={[
-                'absolute left-0 top-4 h-[2px] w-6 bg-gray-900 transition-all duration-300',
-                open ? 'top-2 -rotate-45' : '',
+                'absolute left-0 right-0 top-1/2 block h-[2px] w-full rounded-full bg-gray-900',
+                'origin-center transition-transform duration-300 ease-out',
+                open ? 'translate-y-0 -rotate-45' : 'translate-y-[6px] rotate-0',
               ].join(' ')}
             />
           </span>
@@ -108,7 +111,7 @@ export default function Navbar() {
 
       {/* MOBILE MENU PANEL */}
       {open ? (
-        <div className="md:hidden border-t border-black/10">
+        <div className="border-t border-black/10 md:hidden">
           <div className="mx-auto max-w-7xl px-5 py-4">
             <div className="flex flex-col gap-2">
               {navItems.map((item) => {

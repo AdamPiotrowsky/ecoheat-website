@@ -7,15 +7,40 @@ import MeetingForm from '@/components/MeetingForm';
 
 
 const galleryImages = [
-
-  '/images/hero/h1.jpeg',
-  '/images/hero/h2.jpeg',
-  '/images/hero/h3.jpeg',
-  '/images/hero/h4.jpeg',
-  '/images/hero/h5.jpeg',
-  '/images/hero/h6.jpeg',
-  '/images/hero/h7.jpeg',
+  '/images/gallery/g8.jpeg',
+  '/images/gallery/g9.jpeg',
+  '/images/gallery/g10.jpeg',
+  '/images/gallery/g11.jpeg',
+  '/images/gallery/g12.jpeg',
+  '/images/gallery/g13.jpeg',
+  '/images/gallery/g14.jpeg',
+  '/images/gallery/g15.jpeg',
+  '/images/gallery/g1.jpeg',
+  '/images/gallery/g2.jpeg',
+  '/images/gallery/g3.jpeg',
+  '/images/gallery/g4.jpeg',
+  '/images/gallery/g5.jpeg',
+  '/images/gallery/g6.jpeg',
+  '/images/gallery/g7.jpeg',
+  '/images/gallery/g16.jpeg',
+  '/images/gallery/g17.jpeg',
+  '/images/gallery/g18.jpeg',
+  '/images/gallery/g19.jpeg',
+  '/images/gallery/g20.jpeg',
+  '/images/gallery/g21.jpeg',
+  '/images/gallery/g22.jpeg',
+  '/images/gallery/g23.jpeg',
+  '/images/gallery/g24.jpeg',
+  '/images/gallery/g25.jpeg',
+  '/images/gallery/g26.jpeg',
+  '/images/gallery/g27.jpeg',
+  '/images/gallery/g28.jpeg',
+  '/images/gallery/g29.jpeg',
+  '/images/gallery/g30.jpeg',
+  '/images/gallery/g31.jpeg',
+  '/images/gallery/g32.jpeg',
 ];
+
 
 const partnerLogos = [
   { name: 'Buderus', src: '/images/partners/pa1.jpeg' },
@@ -196,17 +221,22 @@ Pompy ciepła · Ogrzewanie podłogowe · Rekuperacja · Klimatyzacja ·<br /> K
       </section>
 
       {/* 2) Galeria prac */}
-      <section id="galeria" className="mx-auto max-w-6xl px-4 pb-14 pt-14 scroll-mt-36">
+      <section
+        id="galeria"
+        className="mx-auto max-w-6xl px-2 sm:px-4 pb-14 pt-14 scroll-mt-36"
+      >
         <Reveal>
-          <h3 className="text-center text-2xl font-bold tracking-tight mb-6">
+          <h3 className="mb-6 text-center text-2xl font-bold tracking-tight">
             Galeria prac
           </h3>
 
-          <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm md:p-8">
+          {/* Galeria – bez dodatkowej karty pod spodem, więcej miejsca na zdjęcia */}
+          <div className="-mx-2 sm:mx-0">
             <GalleryCarousel images={galleryImages} />
           </div>
         </Reveal>
       </section>
+
 
       {/* DLACZEGO ECOHEAT TECHNIC */}
       <section id="certyfikaty" className="mx-auto max-w-6xl pb-14 scroll-mt-36">

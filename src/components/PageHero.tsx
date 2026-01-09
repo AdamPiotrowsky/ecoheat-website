@@ -63,7 +63,7 @@ export default function PageHero({
   const typedSubtitle = subtitleChars.slice(0, typedSubCount).join('');
 
   return (
-    <section className={`relative w-full ${heightClassName}`}>
+    <section className={`relative w-full overflow-hidden ${heightClassName}`}>
       {/* tło */}
       <div
         className="absolute inset-0 hero-bg hero-zoom"
@@ -76,7 +76,7 @@ export default function PageHero({
 
       {/* tekst w kontenerze */}
       <div className="relative z-10 flex h-full items-end">
-        <div className="mx-auto w-full max-w-6xl px-4 pb-12 md:pb-16">
+        <div className="mx-auto w-full max-w-6xl px-4 pb-12 pt-24 md:pb-16 md:pt-32">
           {/* Title: pojawia się (fade + slide) */}
           <h1
             className={[

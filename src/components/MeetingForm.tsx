@@ -1,52 +1,75 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 }
 
 type Props = {
-  toEmail: string;
   title?: string;
   description?: string;
   submitLabel?: string;
-  subject?: string;
 };
 
 const inputBase =
   'mt-2 w-full rounded-xl border bg-white px-4 py-3 text-sm outline-none transition focus:ring-2 focus:ring-black/10';
 
 export default function MeetingForm({
-  toEmail,
   title = 'Umów się na spotkanie',
   description = 'Zostaw kontakt i krótki opis potrzeb — odezwiemy się.',
   submitLabel = 'Wyślij wiadomość',
-  subject = 'EcoHeat Technic – wiadomość ze strony',
 }: Props) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
 
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState<string>('');
+
   const emailOk = isValidEmail(email);
   const messageOk = message.trim().length > 0;
-  const canSend = emailOk && messageOk;
+  const canSend = emailOk && messageOk && status !== 'sending';
 
-  const mailtoHref = useMemo(() => {
-    const body =
-      `Imię i nazwisko: ${name.trim()}\n` +
-      `Email: ${email.trim()}\n` +
-      `Telefon: ${phone.trim()}\n\n` +
-      `${message.trim()}\n`;
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!canSend) return;
 
-    const params = new URLSearchParams({
-      subject,
-      body,
-    });
+    setStatus('sending');
+    setErrorMsg('');
 
-    return `mailto:${toEmail}?${params.toString()}`;
-  }, [toEmail, subject, name, email, phone, message]);
+    try {
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          message,
+        }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok || !data.ok) {
+        setStatus('error');
+        setErrorMsg(data?.error || 'Nie udało się wysłać wiadomości.');
+        return;
+      }
+
+      setStatus('sent');
+      setName('');
+      setEmail('');
+      setPhone('');
+      setMessage('');
+    } catch (err) {
+      console.error(err);
+      setStatus('error');
+      setErrorMsg('Błąd połączenia. Spróbuj ponownie.');
+    }
+  }
 
   return (
     <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-sm md:p-10">
@@ -59,7 +82,7 @@ export default function MeetingForm({
       {/* Form */}
       <form
         className="mx-auto mt-8 w-full max-w-2xl"
-        onSubmit={(e) => e.preventDefault()}
+        onSubmit={handleSubmit}
       >
         <div className="grid gap-4 md:grid-cols-2">
           {/* Name */}
@@ -134,14 +157,11 @@ export default function MeetingForm({
           ) : null}
         </div>
 
-        {/* Button */}
+        {/* Button + status */}
         <div className="mt-6">
-          <a
-            href={canSend ? mailtoHref : undefined}
-            aria-disabled={!canSend}
-            onClick={(e) => {
-              if (!canSend) e.preventDefault();
-            }}
+          <button
+            type="submit"
+            disabled={!canSend}
             className={[
               'inline-flex w-full items-center justify-center rounded-xl px-8 py-4 text-base font-semibold border border-black transition-all duration-300 ease-out',
               canSend
@@ -149,11 +169,23 @@ export default function MeetingForm({
                 : 'bg-black/40 text-white/80 cursor-not-allowed',
             ].join(' ')}
           >
-            {submitLabel}
-          </a>
+            {status === 'sending' ? 'Wysyłanie…' : submitLabel}
+          </button>
+
+          {status === 'sent' && (
+            <p className="mt-3 text-center text-sm font-semibold text-green-700">
+              ✅ Wiadomość została wysłana. Dziękujemy!
+            </p>
+          )}
+
+          {status === 'error' && (
+            <p className="mt-3 text-center text-sm font-semibold text-red-700">
+              ❌ {errorMsg || 'Nie udało się wysłać wiadomości.'}
+            </p>
+          )}
 
           <p className="mt-3 text-center text-xs text-gray-500">
-            * Wymagane: email i treść. Wysyłka otworzy Twoją aplikację pocztową.
+            * Wymagane: email i treść.
           </p>
         </div>
       </form>
