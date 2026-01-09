@@ -165,8 +165,8 @@ export default function HomePage() {
               <Image
                 src="/images/logo.png"
                 alt="EcoHeat logo"
-                width={120}
-                height={120}
+                width={200}
+                height={200}
                 className="h-32 w-auto"
                 priority
               />
