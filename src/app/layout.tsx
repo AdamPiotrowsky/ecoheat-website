@@ -13,27 +13,28 @@ export const metadata: Metadata = {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon.ico', rel: 'shortcut icon' },
+      { url: '/favicon.ico', type: 'image/x-icon' },
     ],
-    apple: '/apple-touch-icon.png',
+    apple: [
+      {
+        url: '/apple-touch-icon.png',
+        sizes: '180x180',
+        type: 'image/png',
+      },
+    ],
   },
 };
-
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pl">
       <body className="min-h-screen bg-gray-50 text-gray-900">
-        {/* Sticky header */}
         <div className="sticky top-0 z-50">
           <TopBar />
           <Navbar />
         </div>
 
-        {/* Main bez ograniczenia szerokości (hero może być full width) */}
-        <main className="min-h-[80vh]">
-          {children}
-        </main>
+        <main className="min-h-[80vh]">{children}</main>
 
         <Footer />
         <BackToTop />
