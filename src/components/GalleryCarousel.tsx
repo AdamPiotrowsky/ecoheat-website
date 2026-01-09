@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
 
 type GalleryCarouselProps = {
   images: string[];
@@ -12,6 +12,11 @@ export default function GalleryCarousel({ images }: GalleryCarouselProps) {
   const [idx, setIdx] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // do swipe na telefonie
+  const touchStartXRef = useRef<number | null>(null);
+  const touchEndXRef = useRef<number | null>(null);
+  const SWIPE_THRESHOLD = 50; // px
+
   const prev = () => {
     setIdx((i) => (i - 1 + safeImages.length) % safeImages.length);
   };
@@ -20,23 +25,58 @@ export default function GalleryCarousel({ images }: GalleryCarouselProps) {
     setIdx((i) => (i + 1) % safeImages.length);
   };
 
-  // przy każdej zmianie zdjęcia resetujemy stan ładowania
+  // reset stanu ładowania przy każdej zmianie zdjęcia
   useEffect(() => {
     setIsLoaded(false);
   }, [idx]);
 
   if (!safeImages.length) return null;
 
+  // obsługa gestów dotykowych
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    touchStartXRef.current = touch.clientX;
+    touchEndXRef.current = null;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    touchEndXRef.current = touch.clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartXRef.current === null || touchEndXRef.current === null) return;
+
+    const deltaX = touchStartXRef.current - touchEndXRef.current;
+
+    if (Math.abs(deltaX) > SWIPE_THRESHOLD) {
+      if (deltaX > 0) {
+        // swipe w lewo -> następne
+        next();
+      } else {
+        // swipe w prawo -> poprzednie
+        prev();
+      }
+    }
+
+    touchStartXRef.current = null;
+    touchEndXRef.current = null;
+  };
+
   return (
     <div className="relative mt-4 sm:mt-6">
       {/* większe pole na zdjęcie, szczególnie na telefonach */}
-      <div className="relative h-[380px] overflow-hidden rounded-2xl bg-black shadow-sm sm:h-[440px] md:h-[560px] lg:h-[640px]">
+      <div
+        className="relative h-[380px] overflow-hidden rounded-2xl bg-black shadow-sm sm:h-[440px] md:h-[560px] lg:h-[640px]"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {/* Zdjęcie – całe, bez przycinania, z płynnym pojawianiem */}
         <Image
           src={safeImages[idx]}
           alt={`Realizacja ${idx + 1}`}
           fill
-          // brak key → brak pełnego remountu przy każdej zmianie
           className={[
             'object-contain',
             'transition-opacity duration-500 ease-out',
@@ -46,8 +86,7 @@ export default function GalleryCarousel({ images }: GalleryCarouselProps) {
           onLoadingComplete={() => setIsLoaded(true)}
         />
 
-        {/* Overlay ładowania – ciemne tło już jest pod spodem (bg-black),
-            więc nie ma białego flasha */}
+        {/* Loader podczas zmiany zdjęcia */}
         {!isLoaded && (
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/40 border-t-white/80" />
@@ -74,8 +113,8 @@ export default function GalleryCarousel({ images }: GalleryCarouselProps) {
           →
         </button>
 
-        {/* Kropki nawigacji */}
-        <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
+        {/* Kropki nawigacji – tylko na desktopie (md+) */}
+        <div className="absolute bottom-4 left-1/2 z-20 hidden -translate-x-1/2 items-center gap-2 md:flex">
           {safeImages.map((_, i) => (
             <button
               key={i}
@@ -87,6 +126,11 @@ export default function GalleryCarousel({ images }: GalleryCarouselProps) {
               ].join(' ')}
             />
           ))}
+        </div>
+
+        {/* Licznik slajdów – tylko na telefonie (do md) */}
+        <div className="absolute bottom-4 right-4 z-20 flex items-center rounded-full bg-black/60 px-3 py-1 text-xs font-medium text-white md:hidden">
+          {idx + 1}/{safeImages.length}
         </div>
       </div>
     </div>

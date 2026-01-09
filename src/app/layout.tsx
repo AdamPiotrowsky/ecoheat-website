@@ -6,9 +6,19 @@ import Footer from '@/components/Footer';
 import BackToTop from '@/components/BackToTop';
 
 export const metadata: Metadata = {
-  title: 'EcoHeat – Strona firmowa',
-  description: 'Nowoczesne rozwiązania grzewcze – EcoHeat.',
+  title: 'EcoHeat Technic – nowoczesne instalacje grzewcze',
+  description:
+    'EcoHeat Technic – projektowanie i montaż pomp ciepła, ogrzewania podłogowego, rekuperacji, klimatyzacji oraz instalacji sanitarnych.',
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.ico', rel: 'shortcut icon' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
 };
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

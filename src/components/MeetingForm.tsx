@@ -185,7 +185,7 @@ export default function MeetingForm({
           )}
 
           <p className="mt-3 text-center text-xs text-gray-500">
-            * Wymagane: email i treść.
+           
           </p>
         </div>
       </form>
