@@ -188,7 +188,7 @@ export default function AboutPage() {
       {/* 6) Umów się na spotkanie lub konsultację */}
       <section id="spotkanie" className="mx-auto max-w-6xl px-4 pb-14 scroll-mt-36">
         <Reveal>
-          <MeetingForm toEmail="twojmail@ecoheat.pl" />
+          <MeetingForm />
         </Reveal>
       </section>
     </>

@@ -91,7 +91,7 @@ export default function ContactPage() {
 
           {/* PRAWA: Formularz mailowy */}
           <Reveal>
-            <MeetingForm toEmail={COMPANY.email} />
+            <MeetingForm />
           </Reveal>
         </section>
 
