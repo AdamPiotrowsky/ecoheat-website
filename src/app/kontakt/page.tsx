@@ -5,7 +5,7 @@ import MeetingForm from '@/components/MeetingForm';
 const COMPANY = {
   owner: 'Dominik Przewoźny',
   phone: '+48 734 601 121',
-  email: 'ecoheattechnic@gmail.com',
+  email: 'biuro@ecoheattechnic.pl',
   addressLine1: 'Ratajczaka 14',
   postcodeCity: '64-320 Wielka Wieś',
   fullAddress: 'Ratajczaka 14, 64-320 Wielka Wieś, Polska',

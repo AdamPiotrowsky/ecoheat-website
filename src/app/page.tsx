@@ -56,7 +56,7 @@ const partnerLogos = [
 // Wklejasz ręcznie swoje prawdziwe opinie:
 const googleReviews = [
   {
-    author: 'Marek Szeremietiew',
+    author: 'Marek S',
     date: '2025-03',
     rating: 5,
     text:
@@ -70,7 +70,7 @@ const googleReviews = [
       'wycenę i brak ukrytych kosztów. To ekipa, której naprawdę można zaufać.',
   },
   {
-    author: 'Wojciech Dudkiewicz',
+    author: 'Wojciech D',
     date: '2025-04',
     rating: 5,
     text:
@@ -80,7 +80,7 @@ const googleReviews = [
       'z p. Dominikiem to przyjemność – dziękuję.',
   },
   {
-    author: 'Mateusz Buda',
+    author: 'Mateusz B',
     date: '2025-03',
     rating: 5,
     text:
@@ -99,7 +99,7 @@ const googleReviews = [
       'Pompa działa cicho i wydajnie.',
   },
   {
-    author: 'Katarzyna Araszewska',
+    author: 'Katarzyna A',
     date: '2025-03',
     rating: 5,
     text:
@@ -107,7 +107,7 @@ const googleReviews = [
       'i fachowa obsługa. Wszystko wykonane solidnie i terminowo.',
   },
   {
-    author: 'Beniamin Chodorowski',
+    author: 'Beniamin C',
     date: '2025-03',
     rating: 5,
     text:
@@ -116,21 +116,21 @@ const googleReviews = [
       'i wydajne. Ekipa słowna, bez niespodzianek.',
   },
   {
-    author: 'Karolina Cichy',
+    author: 'Karolina C',
     date: '2025-03',
     rating: 5,
     text:
       'Super kontakt, szybko i rzetelnie wykonana robota. Polecam z całego serca.',
   },
   {
-    author: 'Alicja Fertig',
+    author: 'Alicja F',
     date: '2025-03',
     rating: 5,
     text:
       'Rzetelny wykonawca, godny polecenia.',
   },
   {
-    author: 'Marcin Kula',
+    author: 'Marcin K',
     date: '2025-04',
     rating: 5,
     text:
@@ -194,7 +194,7 @@ Pompy ciepła · Ogrzewanie podłogowe · Rekuperacja · Klimatyzacja ·<br /> K
                   href="#galeria"
                   className="rounded-full border border-black/10 bg-gray-50 px-5 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-100"
                 >
-                  Galeria prac
+                  Nasze realizacje
                 </a>
                 <a
                   href="#certyfikaty"
@@ -227,7 +227,7 @@ Pompy ciepła · Ogrzewanie podłogowe · Rekuperacja · Klimatyzacja ·<br /> K
       >
         <Reveal>
           <h3 className="mb-6 text-center text-2xl font-bold tracking-tight">
-            Galeria prac
+            Nasze realizacje
           </h3>
 
           {/* Galeria – bez dodatkowej karty pod spodem, więcej miejsca na zdjęcia */}

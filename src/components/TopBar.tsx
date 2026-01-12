@@ -16,10 +16,10 @@ export default function TopBar() {
           </a>
 
           <a
-            href="mailto:ecoheattechnic@gmail.com"
+            href="mailto:biuro@ecoheattechnic.pl "
             className="flex items-center gap-1 opacity-90 hover:opacity-100"
           >
-            ✉️ ecoheattechnic@gmail.com
+            ✉️ biuro@ecoheattechnic.pl
           </a>
         </div>
 
@@ -32,7 +32,7 @@ export default function TopBar() {
             📞
           </a>
           <a
-            href="mailto:ecoheattechnic@gmail.com"
+            href="mailto:biuro@ecoheattechnic.pl"
             className="opacity-90 hover:opacity-100"
           >
             ✉️

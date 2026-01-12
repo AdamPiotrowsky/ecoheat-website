@@ -37,10 +37,10 @@ export default function Footer() {
               <p>
                 ✉️{' '}
                 <a
-                  href="mailto:ecoheattechnic@gmail.com"
+                  href="mailto:biuro@ecoheattechnic.pl"
                   className="underline decoration-white/30 underline-offset-4 hover:decoration-white/70"
                 >
-                  ecoheattechnic@gmail.com
+                  biuro@ecoheattechnic.pl 
                 </a>
               </p>
             </div>
